@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 export default function Vote() {
   const [choice, setChoice] = useState("");
@@ -17,6 +18,10 @@ export default function Vote() {
 
   return (
     <div>
+      {/* Header */}
+      <h1>Vote Page</h1>
+      
+      {/* Main Content */}
       <form>
         <div>
           <label>Which Burger Joint Do You Like Better?</label>
@@ -34,21 +39,29 @@ export default function Vote() {
             onChange={(e) => setChoice(e.target.value)}
           />
           Whattaburger
-
         </div>
         <button type="button" onClick={vote}>
-          vote
+          Vote
         </button>
       </form>
       <div>
-        <h1>result</h1>
-        {Object.entries(results).map(([key, val]) => {
-          return (
-            <p key={key}>
-              {key}: {val}
-            </p>
-          );
-        })}
+        <h2>Results</h2>
+        {Object.entries(results).map(([key, val]) => (
+          <p key={key}>
+            {key}: {val}
+          </p>
+        ))}
+      </div>
+      
+      {/* Links to other pages */}
+      <div>
+        <h2>Links to Other Pages</h2>
+        <nav>
+          <ul>
+            <li><Link to="/">Go to Home Page</Link></li>
+            <li><Link to="/rankings">Go to Rankings Page</Link></li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

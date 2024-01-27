@@ -1,10 +1,10 @@
-// src/components/Results.js
+// src/components/Rankings.js
 import React from 'react';
 
-const Results = () => {
+const Rankings = () => {
   return (
     <div>
-      <h2>Rankings Component</h2>
+      <h2>Rankings Page</h2>
       <nav>
         <ul>
           <li><a href="/">Go to Home Page</a></li>
@@ -15,4 +15,4 @@ const Results = () => {
   );
 };
 
-export default Results;
+export default Rankings;
