@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Vote() {
-  const [choice, setChoice] = useState("");
-  const [results, setResults] = useState({});
-
-  const vote = () => {
-    if (!localStorage.getItem("vote-result")) {
-      localStorage.setItem("vote-result", JSON.stringify({}));
-    }
-    setResults({ ...results, [choice]: (results[choice] ?? 0) + 1 });
-  };
+export default function Vote({ setResults }) {
+  const [choice, setChoice] = useState('');
+  const [results, setLocalResults] = useState({});
 
   useEffect(() => {
-    localStorage.setItem("vote-result", JSON.stringify(results));
-  }, [results]);
+    const storedResults = JSON.parse(localStorage.getItem('vote-result')) || {};
+    setLocalResults(storedResults);
+    setResults(storedResults);
+  }, [setResults]);
+
+  const vote = () => {
+    const updatedResults = { ...results, [choice]: (results[choice] ?? 0) + 1 };
+    setLocalResults(updatedResults);
+    setResults(updatedResults);
+    localStorage.setItem('vote-result', JSON.stringify(updatedResults));
+  };
 
   return (
     <div>
-      {/* Header */}
       <h1>Vote Page</h1>
-      
-      {/* Main Content */}
       <form>
         <div>
           <label>Which Burger Joint Do You Like Better?</label>
@@ -52,8 +51,6 @@ export default function Vote() {
           </p>
         ))}
       </div>
-      
-      {/* Links to other pages */}
       <div>
         <h2>Links to Other Pages</h2>
         <nav>
