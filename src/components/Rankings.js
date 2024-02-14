@@ -1,5 +1,7 @@
+// src/components/Rankings.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './styles.css'; // Import the common stylesheet
 
 const Rankings = () => {
   const [results, setResults] = useState({});

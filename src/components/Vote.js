@@ -1,5 +1,7 @@
+// src/components/Vote.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './styles.css'; // Import the common stylesheet
 
 export default function Vote({ setResults }) {
   const [choice, setChoice] = useState('');
@@ -19,31 +21,33 @@ export default function Vote({ setResults }) {
   };
 
   return (
-    <div>
+    <div className="vote-container">
       <h1>Vote Page</h1>
-      <form>
+      <form className="vote-form">
         <div>
           <label>Which Burger Joint Do You Like Better?</label>
-          <input
-            type="radio"
-            value="In-N-Out"
-            checked={"In-N-Out" === choice}
-            onChange={(e) => setChoice(e.target.value)}
-          />
-          In-N-Out
-          <input
-            type="radio"
-            value="Whattaburger"
-            checked={"Whattaburger" === choice}
-            onChange={(e) => setChoice(e.target.value)}
-          />
-          Whattaburger
+          <div className="radio-options">
+            <input
+              type="radio"
+              value="In-N-Out"
+              checked={"In-N-Out" === choice}
+              onChange={(e) => setChoice(e.target.value)}
+            />
+            <span>In-N-Out</span>
+            <input
+              type="radio"
+              value="Whattaburger"
+              checked={"Whattaburger" === choice}
+              onChange={(e) => setChoice(e.target.value)}
+            />
+            <span>Whattaburger</span>
+          </div>
         </div>
-        <button type="button" onClick={vote}>
+        <button type="button" onClick={vote} className="vote-button">
           Vote
         </button>
       </form>
-      <div>
+      <div className="results-container">
         <h2>Results</h2>
         {Object.entries(results).map(([key, val]) => (
           <p key={key}>
@@ -51,7 +55,7 @@ export default function Vote({ setResults }) {
           </p>
         ))}
       </div>
-      <div>
+      <div className="links-container">
         <h2>Links to Other Pages</h2>
         <nav>
           <ul>
